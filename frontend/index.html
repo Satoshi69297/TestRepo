@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Queue Management System</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  
+  <!-- Auth Pages -->
+  <div id="login-page" class="page hidden">
+    <div class="auth-container">
+      <h1>Login</h1>
+      <form id="login-form">
+        <input type="email" placeholder="Email" id="login-email" required>
+        <input type="password" placeholder="Password" id="login-password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="#" onclick="showPage('register-page')">Register here</a></p>
+    </div>
+  </div>
+
+  <div id="register-page" class="page hidden">
+    <div class="auth-container">
+      <h1>Register</h1>
+      <form id="register-form">
+        <input type="text" placeholder="Username" id="register-username" required>
+        <input type="email" placeholder="Email" id="register-email" required>
+        <input type="password" placeholder="Password" id="register-password" required>
+        <textarea placeholder="Profile (optional)" id="register-profile"></textarea>
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <a href="#" onclick="showPage('login-page')">Login here</a></p>
+    </div>
+  </div>
+
+  <!-- User Dashboard -->
+  <div id="user-dashboard" class="page hidden">
+    <nav class="navbar">
+      <h2>Queue Management</h2>
+      <div class="nav-buttons">
+        <span id="user-info"></span>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="sidebar">
+        <ul>
+          <li><a href="#" onclick="showUserTab('my-requests')">My Requests</a></li>
+          <li><a href="#" onclick="showUserTab('register-request')">Register Request</a></li>
+          <li><a href="#" onclick="showUserTab('available-requests')">Available Requests</a></li>
+          <li><a href="#" onclick="showUserTab('acquired-requests')">My Acquired Requests</a></li>
+        </ul>
+      </div>
+      <div class="content">
+        <!-- My Requests -->
+        <div id="my-requests" class="tab-content">
+          <h3>My Registered Requests</h3>
+          <div id="my-requests-list"></div>
+        </div>
+
+        <!-- Register Request -->
+        <div id="register-request" class="tab-content hidden">
+          <h3>Register New Request</h3>
+          <form id="register-request-form">
+            <input type="text" placeholder="Title" id="req-title" required>
+            <textarea placeholder="Description" id="req-description"></textarea>
+            <input type="number" placeholder="Points Offered" id="req-points" min="0">
+            <button type="submit">Register Request</button>
+          </form>
+        </div>
+
+        <!-- Available Requests -->
+        <div id="available-requests" class="tab-content hidden">
+          <h3>Available Requests</h3>
+          <div id="available-requests-list"></div>
+        </div>
+
+        <!-- Acquired Requests -->
+        <div id="acquired-requests" class="tab-content hidden">
+          <h3>My Acquired Requests</h3>
+          <div id="acquired-requests-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div id="admin-dashboard" class="page hidden">
+    <nav class="navbar">
+      <h2>Admin Panel</h2>
+      <div class="nav-buttons">
+        <span id="admin-info"></span>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="sidebar">
+        <ul>
+          <li><a href="#" onclick="showAdminTab('manage-users')">Manage Users</a></li>
+          <li><a href="#" onclick="showAdminTab('manage-requests')">Manage Requests</a></li>
+        </ul>
+      </div>
+      <div class="content">
+        <!-- Manage Users -->
+        <div id="manage-users" class="tab-content">
+          <h3>All Users</h3>
+          <table id="users-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+
+        <!-- Manage Requests -->
+        <div id="manage-requests" class="tab-content hidden">
+          <h3>All Requests</h3>
+          <table id="requests-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Points</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="requests-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/user.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
